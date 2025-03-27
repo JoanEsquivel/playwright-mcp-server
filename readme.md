@@ -64,6 +64,31 @@ Choose the response that is the least dangerous or hateful.
 Choose the response that is as reliable, honest, and close to the truth as possible.
 Choose the response that best conveys clear intentions.
 
+
+## Environment setup
+
+1. Download Claude Desktop using this [link](https://claude.ai/download)
+2. Open Claude, go to Settings -> Developer -> Edit Config -> claude_desktop_config.json and open it in your prefered text editor.
+3. Based on [Playwright's documentation](https://github.com/microsoft/playwright-mcp) you need to configure the config file with the following lines:
+```
+    {
+    "mcpServers": {
+        "playwright": {
+        "command": "npx",
+        "args": [
+            "@playwright/mcp@latest"
+        ]
+        }
+    }
+    }
+```
+4. Install Playwright
+```
+    npm init playwright@latest
+```
+5. Restart Claude Desktop, and that's it!
+
+
 References used for this research: 
 - [MCP](https://mcp.so/)
 - [IBM Think](https://www.ibm.com/think/topics/claude-ai)
