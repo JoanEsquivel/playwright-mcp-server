@@ -88,6 +88,8 @@ Choose the response that best conveys clear intentions.
 ```
 5. Restart Claude Desktop, and that's it!
 
+This is a solid introduction, I will iterate soon with GitHub Copilot integration as soon as it is released.
+
 
 References used for this research: 
 - [MCP](https://mcp.so/)
