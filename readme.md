@@ -64,7 +64,6 @@ Choose the response that is the least dangerous or hateful.
 Choose the response that is as reliable, honest, and close to the truth as possible.
 Choose the response that best conveys clear intentions.
 
-
 References used for this research: 
-https://mcp.so/
-https://www.ibm.com/think/topics/claude-ai
+- [MCP](https://mcp.so/)
+- [IBM Think](https://www.ibm.com/think/topics/claude-ai)
