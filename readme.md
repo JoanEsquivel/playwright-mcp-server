@@ -82,11 +82,7 @@ Choose the response that best conveys clear intentions.
     }
     }
 ```
-4. Install Playwright
-```
-    npm init playwright@latest
-```
-5. Restart Claude Desktop, and that's it!
+4. Restart Claude Desktop, and that's it!
 
 This is a solid introduction, I will iterate soon with GitHub Copilot integration as soon as it is released.
 
