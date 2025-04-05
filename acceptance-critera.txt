@@ -1,0 +1,21 @@
+✅ Acceptance Criteria – Login Functionality for SauceDemo
+
+Scenario 1: Valid Login
+Goal: Ensure that a user with valid credentials can successfully log in and access the inventory page.
+Acceptance Criteria:
+
+The system must allow access when a valid username and password are provided.
+Upon successful login, the user is redirected to the inventory page (/inventory.html).
+No error message should be displayed after login.
+
+
+Scenario 2: Locked Out User
+Goal: Ensure that a locked-out user cannot log in and is informed of their status.
+
+Acceptance Criteria:
+
+If a locked user attempts to log in with a valid password, access must be denied.
+The user remains on the login page and is not redirected.
+An error message must be displayed with the text:
+“Epic sadface: Sorry, this user has been locked out.”
+The login form should remain visible, allowing the user to retry or change credentials.

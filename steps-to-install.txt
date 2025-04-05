@@ -1,0 +1,27 @@
+1- Download this dependency: npm install -g @executeautomation/playwright-mcp-server
+This is from this repository: https://github.com/executeautomation/mcp-playwright
+
+2- In cursor, add the MCP Server: 
+{
+    "mcpServers": {
+      "playwright-mcp-server": {
+        "command": "npx",
+        "args": ["@executeautomation/playwright-mcp-server"]
+      }
+    }
+  }
+
+3- Run the prompt
+
+4- Let's create a venv and test the output: 
+python -m venv playwright-python
+source playwright-python/bin/activate
+pip install -r requirements.txt
+
+5- If there is an error, you may need to use the latest version of the libraries:
+playwright==1.51.0
+
+
+
+6- Run the framework: 
+python -m pytest tests
