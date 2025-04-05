@@ -33,7 +33,7 @@ playwright-python-framework/
 ├── requirements.txt
 ├── pages
 │   └── __init__.py
-│   └── todo_page.py
+│   └── login_page.py
 ├── tests/
 │   └── test_login.py
 │   └── pytest.ini
