@@ -1,89 +1,65 @@
-# Sauce Demo Cypress Tests
+# SauceDemo Cypress Tests
 
-This repository contains automated tests for the Sauce Demo website using Cypress with TypeScript.
+This project contains automated tests for the SauceDemo website using Cypress with TypeScript and follows the Page Object Model pattern.
 
-## Features
+## Test Scenarios
 
-- TypeScript for type safety
-- Page Object Model (POM) design pattern
-- Custom Cypress commands
-- Mochawesome reporting
-- GitHub Actions integration
-- Environment variables for credentials
+1. Valid Login - Tests successful login with standard_user
+2. Locked Out User - Tests error message when logging in with locked_out_user
 
 ## Project Structure
 
 ```
-├── .github/workflows     # GitHub Actions workflow files
-├── cypress               # Cypress test files
-│   ├── e2e               # Test specifications
-│   ├── fixtures          # Test data
-│   ├── support           # Support files
-│   │   ├── commands      # Custom commands
-│   │   ├── pages         # Page Object Models
-├── .gitignore            # Git ignore file
-├── cypress.config.ts     # Cypress configuration
-├── cypress.env.json      # Environment variables (gitignored)
-├── package.json          # Project dependencies
-├── tsconfig.json         # TypeScript configuration
-└── README.md             # Project documentation
+├── cypress/
+│   ├── e2e/               # Test files
+│   ├── fixtures/          # Test data
+│   ├── pages/             # Page Objects
+│   └── support/           # Support files and commands
+├── .github/workflows/     # GitHub Actions workflows
+├── cypress.config.ts      # Cypress configuration
+├── cypress.env.json       # Environment variables (not committed to git)
+├── package.json           # Project dependencies
+└── tsconfig.json          # TypeScript configuration
 ```
 
 ## Prerequisites
 
-- Node.js (v16 or higher)
-- npm (v7 or higher)
+- Node.js (v14 or later)
+- npm (v6 or later)
 
 ## Installation
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   ```
-
+1. Clone the repository
 2. Install dependencies:
-   ```
-   npm install
-   ```
 
-3. Create a `cypress.env.json` file in the root directory with the following content:
-   ```json
-   {
-     "standard_username": "standard_user",
-     "locked_out_username": "locked_out_user",
-     "password": "secret_sauce"
-   }
-   ```
+```bash
+npm install
+```
 
 ## Running Tests
 
-To run tests in the Cypress Test Runner:
+### Run tests in headless mode:
 
-```
-npm run cypress:open
-```
-
-To run tests in headless mode:
-
-```
-npm run cypress:run
+```bash
+npm run cy:run
 ```
 
-To run tests in a specific browser:
+### Open Cypress Test Runner:
 
+```bash
+npm run cy:open
 ```
-npm run cypress:run:chrome
-```
-
-## Reports
-
-After running tests in headless mode, the Mochawesome report will be generated in the `cypress/reports` directory.
 
 ## CI/CD
 
-The repository is configured with GitHub Actions to run tests on every push to the master branch.
-The workflow will:
-1. Install dependencies
-2. Create the necessary environment variables
-3. Run Cypress tests in headless mode
-4. Upload the test reports as artifacts 
+This project uses GitHub Actions for continuous integration. The workflow:
+
+1. Runs on pushes to the master branch and pull requests
+2. Installs dependencies
+3. Runs Cypress tests in headless mode
+4. Generates and uploads Mochawesome reports
+5. Uploads screenshots on test failure
+
+## Test Reporting
+
+The project uses cypress-mochawesome-reporter for generating HTML reports. After running tests, reports can be found in the `cypress/reports` directory. 

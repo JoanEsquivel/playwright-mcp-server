@@ -11,33 +11,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 16
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Create cypress.env.json
+      # Create cypress.env.json file using GitHub secrets
+      - name: Create Cypress environment file
         run: |
           echo '{
-            "standard_username": "standard_user",
-            "locked_out_username": "locked_out_user",
-            "password": "secret_sauce"
+            "users": {
+              "standard": {
+                "username": "standard_user",
+                "password": "secret_sauce"
+              },
+              "locked": {
+                "username": "locked_out_user",
+                "password": "secret_sauce"
+              }
+            }
           }' > cypress.env.json
 
-      - name: Run Cypress Tests
-        uses: cypress-io/github-action@v5
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
         with:
           browser: chrome
-          headless: true
+          headed: false
 
-      - name: Upload Mochawesome Report
-        uses: actions/upload-artifact@v3
+      - name: Upload screenshots on failure
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: Upload Mochawesome report
+        uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: mochawesome-report
+          name: cypress-report
           path: cypress/reports 

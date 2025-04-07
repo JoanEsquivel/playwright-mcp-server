@@ -1,58 +1,38 @@
 /// <reference types="cypress" />
 
-import LoginPage from './pages/LoginPage';
-import ProductsPage from './pages/ProductsPage';
+// ***********************************************
+// Commands.ts provides a custom commands for Cypress
+// ***********************************************
 
-// Extend Cypress namespace for custom commands
+// Add 3rd party commands
+
+// Declare global Cypress namespace to prevent TypeScript errors
 declare global {
   namespace Cypress {
     interface Chainable {
       /**
-       * Custom command to log in using valid credentials
-       * @example cy.loginWithValidUser()
+       * Custom command to set viewport size
+       * @example cy.setViewport('mobile')
        */
-      loginWithValidUser(): Chainable<Element>;
-      
-      /**
-       * Custom command to log in with specified credentials
-       * @example cy.login('username', 'password')
-       */
-      login(username: string, password: string): Chainable<Element>;
-      
-      /**
-       * Custom command to verify successful login
-       * @example cy.verifySuccessfulLogin()
-       */
-      verifySuccessfulLogin(): Chainable<Element>;
-      
-      /**
-       * Custom command to log a message to the console
-       * @example cy.logMessage('Test message')
-       */
-      logMessage(message: string): Chainable<Element>;
+      setViewport(size: string): Chainable<Element>;
     }
   }
 }
 
-// Custom command implementations
-Cypress.Commands.add('loginWithValidUser', () => {
-  const loginPage = new LoginPage();
-  cy.logMessage('Logging in with standard user');
-  loginPage.login(Cypress.env('standard_username'), Cypress.env('password'));
+// Custom commands
+Cypress.Commands.add('setViewport', (size: string) => {
+  if (size === 'mobile') {
+    cy.viewport(375, 667); // iPhone 8
+  } else if (size === 'tablet') {
+    cy.viewport(768, 1024); // iPad
+  } else if (size === 'desktop') {
+    cy.viewport(1280, 720); // Standard desktop
+  } else {
+    // Default desktop
+    cy.viewport(1280, 720);
+  }
+  cy.task('log', `Viewport set to: ${size}`);
 });
 
-Cypress.Commands.add('login', (username, password) => {
-  const loginPage = new LoginPage();
-  cy.logMessage(`Logging in with username: ${username}`);
-  loginPage.login(username, password);
-});
-
-Cypress.Commands.add('verifySuccessfulLogin', () => {
-  const productsPage = new ProductsPage();
-  cy.logMessage('Verifying successful login');
-  productsPage.verifyProductsPageLoaded();
-});
-
-Cypress.Commands.add('logMessage', (message) => {
-  cy.task('log', message);
-}); 
+// This adds better intellisense for cy commands
+export {}; 

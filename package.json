@@ -1,25 +1,22 @@
 {
-  "name": "sauce-demo-cypress-tests",
+  "name": "saucedemo-cypress-tests",
   "version": "1.0.0",
-  "description": "Cypress TypeScript tests for Sauce Demo website",
+  "description": "Cypress tests for SauceDemo website",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "cypress:run:chrome": "cypress run --browser chrome",
-    "cypress:run:firefox": "cypress run --browser firefox"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "keywords": [
     "cypress",
-    "typescript",
+    "testing",
     "automation"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.11.0",
-    "cypress": "^13.6.2",
-    "cypress-mochawesome-reporter": "^3.8.0",
-    "typescript": "^5.3.3"
+    "cypress": "^13.6.0",
+    "typescript": "^5.2.2",
+    "cypress-mochawesome-reporter": "^3.6.1"
   }
 } 
