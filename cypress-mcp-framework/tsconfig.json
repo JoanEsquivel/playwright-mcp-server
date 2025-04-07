@@ -3,10 +3,13 @@
     "target": "es5",
     "lib": ["es5", "dom"],
     "types": ["cypress", "node"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "baseUrl": "./",
-    "strict": true,
-    "skipLibCheck": true,
-    "noEmit": true
+    "paths": {
+      "@pages/*": ["cypress/pages/*"],
+      "@fixtures/*": ["cypress/fixtures/*"]
+    }
   },
   "include": ["**/*.ts"]
 } 

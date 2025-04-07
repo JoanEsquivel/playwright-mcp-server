@@ -1,11 +1,19 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
+declare namespace Cypress {
+  interface Chainable {
+    logInfo(message: string): void;
+    logStep(message: string): void;
+    logAssertion(message: string): void;
+  }
+}
 
-export {} 
+Cypress.Commands.add('logInfo', (message: string) => {
+  cy.task('log', `ℹ️ INFO: ${message}`);
+});
+
+Cypress.Commands.add('logStep', (message: string) => {
+  cy.task('log', `▶️ STEP: ${message}`);
+});
+
+Cypress.Commands.add('logAssertion', (message: string) => {
+  cy.task('log', `✅ ASSERT: ${message}`);
+}); 

@@ -17,10 +17,10 @@ test('SauceDemo_2025-04-07', async ({ page, context }) => {
     await page.click('[data-test="login-button"]');
 
     // Click element
-    await page.click('[id="react-burger-menu-btn"]');
+    await page.click('#react-burger-menu-btn');
 
     // Click element
-    await page.click('[id="logout_sidebar_link"]');
+    await page.click('#logout_sidebar_link');
 
     // Fill input field
     await page.fill('[data-test="username"]', 'locked_out_user');

@@ -1,33 +1,41 @@
 # Cypress MCP Framework
 
-This project contains automated tests for the Sauce Demo website using Cypress with TypeScript and Page Object Model pattern.
+This project contains automated tests for the SauceDemo website using Cypress with TypeScript, implementing the Page Object Model pattern.
 
 ## Project Structure
 
 ```
-cypress/
-  ├── e2e/           # Test files
-  ├── fixtures/      # Test data
-  ├── pages/         # Page Object Model classes
-  └── support/       # Support files and commands
+cypress-mcp-framework/
+├── cypress/
+│   ├── e2e/           # Test files
+│   ├── fixtures/      # Test data
+│   ├── support/       # Custom commands and global configuration
+│   └── pages/         # Page Object Model classes
+├── cypress.config.ts  # Cypress configuration
+├── package.json      # Project dependencies
+└── tsconfig.json    # TypeScript configuration
 ```
 
 ## Prerequisites
 
-- Node.js (v20 or later)
-- npm
+- Node.js (v14 or higher)
+- npm (v6 or higher)
 
 ## Installation
 
 1. Clone the repository
-2. Install dependencies:
+2. Navigate to the project directory:
+   ```bash
+   cd cypress-mcp-framework
+   ```
+3. Install dependencies:
    ```bash
    npm install
    ```
 
 ## Configuration
 
-The project uses `cypress.env.json` for environment-specific variables. Create this file with the following content:
+The project uses `cypress.env.json` for environment-specific credentials. Create this file in the project root (it's gitignored):
 
 ```json
 {
@@ -39,32 +47,23 @@ The project uses `cypress.env.json` for environment-specific variables. Create t
 
 ## Running Tests
 
-To open Cypress Test Runner:
-```bash
-npm run test:open
-```
-
 To run tests in headless mode:
 ```bash
-npm test
+npm run test
 ```
 
-To run tests in specific browsers:
+To open Cypress Test Runner:
 ```bash
-npm run test:chrome
-npm run test:firefox
+npm run cypress:open
 ```
 
-## GitHub Actions
+## Test Reports
 
-The project includes a GitHub Actions workflow that runs the tests automatically on push and pull requests.
+The project uses Mochawesome for generating test reports. After test execution, you can find the reports in:
+```
+cypress/reports/html/index.html
+```
 
-## Test Cases
+## Custom Commands
 
-1. Valid Login
-   - Tests successful login with standard user credentials
-   - Verifies navigation to inventory page
-
-2. Locked Out User
-   - Tests login attempt with locked out user
-   - Verifies error message display 
+The framework includes custom logging commands that provide detailed information about test actions and assertions in the terminal. These can be found in `cypress/support/commands.ts`. 

@@ -1,11 +1,21 @@
-import { defineConfig } from 'cypress'
+import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
     baseUrl: 'https://www.saucedemo.com',
-    supportFile: 'cypress/support/e2e.ts',
+    setupNodeEvents(on, config) {
+      require('cypress-mochawesome-reporter/plugin')(on);
+    },
     specPattern: 'cypress/e2e/**/*.cy.ts',
-    viewportWidth: 1280,
-    viewportHeight: 720
+    reporter: 'cypress-mochawesome-reporter',
+    reporterOptions: {
+      charts: true,
+      reportPageTitle: 'Sauce Demo Tests Report',
+      embeddedScreenshots: true,
+      inlineAssets: true,
+      saveAllAttempts: false,
+    },
+    video: false,
+    screenshotOnRunFailure: true,
   },
-}) 
+}); 

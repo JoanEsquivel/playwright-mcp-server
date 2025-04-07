@@ -1,13 +1,12 @@
 {
   "name": "cypress-mcp-framework",
   "version": "1.0.0",
-  "description": "Cypress test automation framework for Sauce Demo",
+  "description": "Cypress test framework for SauceDemo website",
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "test:open": "cypress open",
-    "test:chrome": "cypress run --browser chrome",
-    "test:firefox": "cypress run --browser firefox"
+    "cypress:open": "cypress open",
+    "test:report": "cypress run --reporter cypress-mochawesome-reporter"
   },
   "keywords": [
     "cypress",
@@ -18,7 +17,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.7.0",
-    "typescript": "^5.4.0"
+    "@cypress/xpath": "^2.0.3",
+    "cypress": "^13.6.6",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "typescript": "^5.4.2"
   }
 }

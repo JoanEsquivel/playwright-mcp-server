@@ -1,9 +1,10 @@
-import './commands'
+import './commands';
+import 'cypress-mochawesome-reporter/register';
 
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      // add custom commands here if needed
-    }
-  }
-} 
+beforeEach(() => {
+  cy.logInfo(`Test started: ${Cypress.currentTest.title}`);
+});
+
+afterEach(() => {
+  cy.logInfo(`Test completed: ${Cypress.currentTest.title}`);
+}); 
