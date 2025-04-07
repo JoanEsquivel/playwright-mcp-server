@@ -1,0 +1,24 @@
+{
+  "name": "cypress-mcp-framework",
+  "version": "1.0.0",
+  "description": "Cypress test automation framework for Sauce Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "test:open": "cypress open",
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox"
+  },
+  "keywords": [
+    "cypress",
+    "typescript",
+    "testing",
+    "e2e"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.7.0",
+    "typescript": "^5.4.0"
+  }
+}

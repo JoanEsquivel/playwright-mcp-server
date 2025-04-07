@@ -3,41 +3,22 @@ Use the Playwright MCP Server to navigate to the website https://www.saucedemo.c
 On the login page, execute the following two scenarios:
 
 Scenario 1: Valid Login
-
-Enter the username as "standard_user" and the password as "secret_sauce".
-Click the Login button.
-Verify that:
-The user is redirected to /inventory.html.
-No error message is displayed.
-The login form is no longer visible.
-The inventory page is displayed successfully.
 Scenario 2: Locked Out User
 
-Enter the username as "locked_out_user" and the password as "secret_sauce".
-Click the Login button.
-Verify that:
-The user remains on the login page.
-The login form is still visible.
-The following error message is displayed:
-"Epic sadface: Sorry, this user has been locked out."
+Where to find the credentials for each scenario? It is in the website, scan the page and you will find them. Please also generate the best assertions you can think of to validate them.
+
 ✅ After both scenarios are validated:
 
 Close the browser.
-At the same time Generate Python code using Playwright with MCP integration to execute the above scenarios.
+Once the MCP server finished the code gen, use the code generated under temp_codegen and transpile it to Typescript Cypress Framework using the code generated as reference.
 
 
-Once you have the code gen thru the MCP server, and use the code generated. Organize the project inside a parent folder named playwright-python-framework.
-The folder structure must follow this format:
+Once you have the code gen thru the MCP server, and use the code generated. Organize the project inside a parent folder named cypress-mcp-framework.
 
-playwright-python-framework/
-├── requirements.txt
-├── pages
-│   └── __init__.py
-│   └── login_page.py
-├── tests/
-│   └── test_login.py
-│   └── pytest.ini
-│   └── conftest.py
-└── README.md
+Generate the best framework structure using Page Object Model, saving data if necessary in fixtures, save the credentials in a a cypress.env.json file
 
-Use pytest as the test runner. Save all files and dependencies inside playwright-python-framework only. Do not place any files in the root directory. Also, use the page object model to store the URL, locators/attributes, and actions of the login page.
+Create a readme.md file to explain how to run the tests, and the structure of the project.
+
+Create a gitignore file to avoid committing the node_modules folder and the cypress.env.json file.
+
+Create a CICD pipeline using Github Actions to run the tests.
