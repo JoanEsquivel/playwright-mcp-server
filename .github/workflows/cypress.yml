@@ -11,23 +11,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 18
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Run Cypress tests
-        run: npx cypress run
+      - name: Create cypress.env.json
+        run: |
+          echo '{
+            "standard_username": "standard_user",
+            "locked_out_username": "locked_out_user",
+            "password": "secret_sauce"
+          }' > cypress.env.json
 
-      - name: Upload Mochawesome report
-        uses: actions/upload-artifact@v4
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v5
+        with:
+          browser: chrome
+          headless: true
+
+      - name: Upload Mochawesome Report
+        uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: cypress-report
-          path: cypress/reports/html
-          retention-days: 30 
+          name: mochawesome-report
+          path: cypress/reports 

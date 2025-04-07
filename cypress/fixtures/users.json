@@ -1,10 +1,12 @@
 {
-  "standardUser": {
+  "validUser": {
     "username": "standard_user",
-    "password": "secret_sauce"
+    "password": "secret_sauce",
+    "expectedTitle": "Products"
   },
   "lockedOutUser": {
     "username": "locked_out_user",
-    "password": "secret_sauce"
+    "password": "secret_sauce",
+    "errorMessage": "Epic sadface: Sorry, this user has been locked out."
   }
 } 

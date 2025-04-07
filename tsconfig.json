@@ -5,9 +5,11 @@
     "types": ["cypress", "node"],
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "baseUrl": "./",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "baseUrl": ".",
     "paths": {
-      "@pages/*": ["cypress/pages/*"],
+      "@pages/*": ["cypress/support/pages/*"],
       "@fixtures/*": ["cypress/fixtures/*"]
     }
   },
