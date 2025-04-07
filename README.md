@@ -11,53 +11,60 @@ This project contains automated tests for the SauceDemo website using Cypress wi
 │   ├── pages/         # Page objects
 │   └── support/       # Support files and commands
 ├── .github/
-│   └── workflows/     # GitHub Actions workflows
+│   └── workflows/     # GitHub Actions workflow
 ├── cypress.config.ts  # Cypress configuration
-├── package.json      # Project dependencies
-└── tsconfig.json    # TypeScript configuration
+├── tsconfig.json     # TypeScript configuration
+└── package.json      # Project dependencies
 ```
 
 ## Prerequisites
 
-- Node.js (v20.x recommended)
-- npm
+- Node.js (v20 or later)
+- npm (comes with Node.js)
 
 ## Installation
 
-1. Clone the repository
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd <repository-name>
+```
+
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `cypress.env.json` file with your credentials (a template is provided)
+```bash
+npm install
+```
 
 ## Running Tests
 
 To run tests in headless mode:
 ```bash
-npm test
+npx cypress run
 ```
 
 To open Cypress Test Runner:
 ```bash
-npm run test:open
+npx cypress open
 ```
 
 ## Test Reports
 
-Test reports are generated using cypress-mochawesome-reporter and can be found in the `cypress/reports` directory after test execution.
+The project uses cypress-mochawesome-reporter for generating test reports. After test execution, you can find the HTML report in:
+```
+cypress/reports/html/index.html
+```
 
-## CI/CD
+## GitHub Actions
 
-The project uses GitHub Actions for continuous integration. The workflow:
-- Runs on push/PR to master branch
+The project includes a GitHub Actions workflow that:
+- Runs on push and pull requests to the master branch
 - Installs dependencies
 - Runs Cypress tests
 - Uploads test reports as artifacts
 
-## Linting
+## Page Object Model
 
-To run the linter:
-```bash
-npm run lint
-``` 
+The tests use the Page Object Model pattern for better maintainability:
+- `LoginPage.ts` contains selectors and methods for the login page
+- Test data is stored in `fixtures/users.json`
+- Custom commands can be added in `support/commands.ts` 

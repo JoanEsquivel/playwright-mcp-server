@@ -16,28 +16,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Create env file
-        run: |
-          echo '{
-            "standardUser": "standard_user",
-            "lockedOutUser": "locked_out_user",
-            "password": "secret_sauce"
-          }' > cypress.env.json
+      - name: Run Cypress tests
+        run: npx cypress run
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-
-      - name: Upload test results
+      - name: Upload Mochawesome report
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cypress-reports
-          path: cypress/reports/
+          name: cypress-report
+          path: cypress/reports/html
           retention-days: 30 

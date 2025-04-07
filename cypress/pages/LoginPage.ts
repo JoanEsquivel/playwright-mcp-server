@@ -1,35 +1,25 @@
-/// <reference types="cypress" />
+class LoginPage {
+  // Selectors
+  private usernameInput = '#user-name';
+  private passwordInput = '#password';
+  private loginButton = '#login-button';
+  private errorMessage = '[data-test="error"]';
 
-export class LoginPage {
-  private selectors = {
-    username: '[data-test="username"]',
-    password: '[data-test="password"]',
-    loginButton: '[data-test="login-button"]',
-    errorMessage: '[data-test="error"]'
-  };
-
+  // Methods
   visit() {
     cy.visit('/');
-    return this;
   }
 
   login(username: string, password: string) {
-    cy.task('log', `Attempting to login with username: ${username}`);
-    cy.get(this.selectors.username).type(username);
-    cy.get(this.selectors.password).type(password);
-    cy.get(this.selectors.loginButton).click();
-    return this;
+    cy.task('log', `Logging in with username: ${username}`);
+    cy.get(this.usernameInput).type(username);
+    cy.get(this.passwordInput).type(password);
+    cy.get(this.loginButton).click();
   }
 
-  verifyErrorMessage(message: string) {
-    cy.task('log', `Verifying error message: ${message}`);
-    cy.get(this.selectors.errorMessage).should('contain.text', message);
-    return this;
+  getErrorMessage() {
+    return cy.get(this.errorMessage);
   }
+}
 
-  verifySuccessfulLogin() {
-    cy.task('log', 'Verifying successful login');
-    cy.url().should('include', '/inventory.html');
-    return this;
-  }
-} 
+export default new LoginPage(); 
