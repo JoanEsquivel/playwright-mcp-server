@@ -1,15 +1,11 @@
 {
+  "urls": {
+    "baseUrl": "https://www.saucedemo.com"
+  },
   "errorMessages": {
     "lockedOutUser": "Epic sadface: Sorry, this user has been locked out."
   },
-  "pageTitle": {
-    "products": "Products"
-  },
-  "validLogin": {
-    "expectedUrl": "/inventory.html",
-    "headerText": "Products"
-  },
-  "lockedOutUser": {
-    "errorMessage": "Epic sadface: Sorry, this user has been locked out."
+  "pageTexts": {
+    "productsHeader": "Products"
   }
 } 

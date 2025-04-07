@@ -13,5 +13,7 @@ Scenario 2: Locked Out User
 11. Create a cy task to get detail logs for the actions, and assertions in the terminal, implement it in the framework, just call the cy task to print console logs.
 12. In the root directory Add a README.md file that documents how to run the tests and describes the project structure.
 13. Install dependencies and Run the framework in headless mode by CLI using cypress run. Check that Cypress and all the tests runs without issues. Failures are accepted, framework configuration issues are not.
-14. In the root directory  Set up a GitHub Actions workflow to install dependencies and run the Cypress tests, set an action to download the mochawesome report for each execution. The branch name is not main as usualy, it is master.
+14. In the root directory  Set up a GitHub Actions workflow to install dependencies and run the Cypress tests,  The branch name is not main as usualy, it is master.
 15. Then, push the latest changes using the GitHub MCP Server root directory to the remote repository. The repo already exists.
+
+In the chat post: "Run the 15 steps until all the process is completed."

@@ -1,23 +1,22 @@
-# Dependencies
+# Dependency directories
 node_modules/
 
-# Cypress generated files
+# TypeScript compiled files
+*.js
+*.map
+
+# Cypress
 cypress/videos/
 cypress/screenshots/
 cypress/downloads/
-cypress/reports/
-
-# Environment variables (contains credentials)
 cypress.env.json
 
 # OS specific files
 .DS_Store
 Thumbs.db
 
-# IDE specific files
+# Editor directories and files
 .idea/
 .vscode/
-
-# Log files
-*.log
-npm-debug.log* 
+*.swp
+*.swo 

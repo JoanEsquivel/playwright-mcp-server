@@ -1,25 +1,20 @@
 # SauceDemo Cypress Tests
 
-This project contains automated tests for the SauceDemo website using Cypress with TypeScript and follows the Page Object Model pattern.
-
-## Test Scenarios
-
-1. Valid Login - Tests successful login with standard_user
-2. Locked Out User - Tests error message when logging in with locked_out_user
+This project contains Cypress end-to-end tests for the SauceDemo website using TypeScript and the Page Object Model pattern.
 
 ## Project Structure
 
 ```
 ├── cypress/
-│   ├── e2e/               # Test files
-│   ├── fixtures/          # Test data
-│   ├── pages/             # Page Objects
-│   └── support/           # Support files and commands
-├── .github/workflows/     # GitHub Actions workflows
-├── cypress.config.ts      # Cypress configuration
-├── cypress.env.json       # Environment variables (not committed to git)
-├── package.json           # Project dependencies
-└── tsconfig.json          # TypeScript configuration
+│   ├── e2e/                 # Test files
+│   ├── fixtures/            # Test data
+│   ├── pages/               # Page Object Model files
+│   ├── support/             # Custom commands and utilities
+│   └── tsconfig.json        # TypeScript configuration
+├── cypress.config.ts        # Cypress configuration
+├── cypress.env.json         # Environment variables (not committed to git)
+├── package.json             # Project dependencies and scripts
+└── README.md                # Project documentation
 ```
 
 ## Prerequisites
@@ -27,39 +22,52 @@ This project contains automated tests for the SauceDemo website using Cypress wi
 - Node.js (v14 or later)
 - npm (v6 or later)
 
-## Installation
+## Setup
 
 1. Clone the repository
 2. Install dependencies:
-
-```bash
-npm install
-```
+   ```
+   npm install
+   ```
+3. Create a `cypress.env.json` file with the following content:
+   ```json
+   {
+     "users": {
+       "standard": {
+         "username": "standard_user",
+         "password": "secret_sauce"
+       },
+       "locked": {
+         "username": "locked_out_user",
+         "password": "secret_sauce"
+       }
+     }
+   }
+   ```
 
 ## Running Tests
 
-### Run tests in headless mode:
+### Headless Mode
 
-```bash
+To run tests in headless mode:
+
+```
 npm run cy:run
 ```
 
-### Open Cypress Test Runner:
+### Interactive Mode
 
-```bash
+To open Cypress in interactive mode:
+
+```
 npm run cy:open
 ```
 
-## CI/CD
+## Test Cases
 
-This project uses GitHub Actions for continuous integration. The workflow:
+1. **Valid Login**: Tests successful login using standard_user
+2. **Locked Out User**: Tests error handling with locked_out_user
 
-1. Runs on pushes to the master branch and pull requests
-2. Installs dependencies
-3. Runs Cypress tests in headless mode
-4. Generates and uploads Mochawesome reports
-5. Uploads screenshots on test failure
+## Logging
 
-## Test Reporting
-
-The project uses cypress-mochawesome-reporter for generating HTML reports. After running tests, reports can be found in the `cypress/reports` directory. 
+The tests include a custom task for logging which displays detailed information in the terminal during test runs. 

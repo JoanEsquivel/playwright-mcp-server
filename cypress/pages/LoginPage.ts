@@ -1,43 +1,32 @@
-import BasePage from './BasePage';
+/// <reference types="cypress" />
 
-export default class LoginPage extends BasePage {
-  // Selectors
+class LoginPage {
+  // Elements
   private usernameInput = '#user-name';
   private passwordInput = '#password';
   private loginButton = '#login-button';
   private errorMessage = '[data-test="error"]';
 
-  /**
-   * Constructor with URL initialization
-   */
-  constructor() {
-    super();
+  // Actions
+  visit() {
+    cy.task('log', 'Visiting login page');
+    cy.visit('/');
+    return this;
   }
 
-  /**
-   * Navigate to login page
-   */
-  visitLoginPage(): void {
-    this.navigate('/');
+  login(username: string, password: string) {
+    cy.task('log', `Attempting to login with username: ${username}`);
+    cy.get(this.usernameInput).clear().type(username);
+    cy.get(this.passwordInput).clear().type(password);
+    cy.get(this.loginButton).click();
+    return this;
   }
 
-  /**
-   * Login with username and password
-   * @param username Username to login with
-   * @param password Password to login with
-   */
-  login(username: string, password: string): void {
-    this.clearAndTypeText(this.usernameInput, username);
-    this.clearAndTypeText(this.passwordInput, password);
-    this.clickElement(this.loginButton);
+  // Assertions
+  getErrorMessage() {
+    cy.task('log', 'Getting error message');
+    return cy.get(this.errorMessage);
   }
+}
 
-  /**
-   * Verify login error message
-   * @param expectedErrorText The expected error text
-   */
-  verifyLoginError(expectedErrorText: string): void {
-    this.verifyElementVisible(this.errorMessage);
-    this.verifyText(this.errorMessage, expectedErrorText);
-  }
-} 
+export default new LoginPage(); 
