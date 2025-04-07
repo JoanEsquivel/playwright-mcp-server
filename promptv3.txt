@@ -24,4 +24,4 @@ Create a custom command to get detail logs for the actions, and assertions in th
 
 Under the root folder set up a GitHub Actions workflow to install dependencies and run the Cypress tests under the folder cypress-mcp-framework. Also, set an artifact to download the mochawesome report for each execution.
 
-Then, push the latest changes from the root directory to the remote repository.
+Then, push the latest changes from the root directory to the remote repository. The repo already exists.
