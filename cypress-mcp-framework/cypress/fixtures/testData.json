@@ -1,8 +1,0 @@
-{
-  "validLogin": {
-    "expectedTitle": "Products"
-  },
-  "lockedOutUser": {
-    "errorMessage": "Epic sadface: Sorry, this user has been locked out."
-  }
-} 

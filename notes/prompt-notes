@@ -13,7 +13,7 @@ Close the browser.
 Once the MCP server finished the code gen, use the code generated under temp_codegen and transpile it to Typescript Cypress Framework using the code generated as reference.
 
 
-Once you have the code gen thru the MCP server, and use the code generated. Organize the project inside a parent folder named cypress-mcp-framework.
+Once you have the code gen thru the MCP server, and use the code generated.
 
 Generate the best framework structure using Page Object Model, saving data if necessary in fixtures, save the credentials in a a cypress.env.json file
 
