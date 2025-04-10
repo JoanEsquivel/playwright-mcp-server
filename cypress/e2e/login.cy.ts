@@ -1,19 +1,24 @@
-import LoginPage from '../pages/LoginPage'
-import InventoryPage from '../pages/InventoryPage'
+import { LoginPage } from '../pages/LoginPage';
 
 describe('Sauce Demo Login Tests', () => {
+  const loginPage = new LoginPage();
+
   beforeEach(() => {
-    LoginPage.visit()
-  })
+    loginPage.visit();
+  });
 
   it('should login successfully with standard user', () => {
-    LoginPage.login(Cypress.env('standardUser'), Cypress.env('password'))
-    InventoryPage.isVisible()
-    InventoryPage.logout()
-  })
+    cy.task('log', '✅ Testing standard user login');
+    cy.login(Cypress.env('standardUser'), Cypress.env('password'));
+    cy.url().should('include', '/inventory.html');
+    cy.logout();
+  });
 
   it('should show error message for locked out user', () => {
-    LoginPage.login(Cypress.env('lockedOutUser'), Cypress.env('password'))
-    LoginPage.getErrorMessage().should('contain.text', 'Epic sadface: Sorry, this user has been locked out')
-  })
-}) 
+    cy.task('log', '❌ Testing locked out user login');
+    cy.login(Cypress.env('lockedOutUser'), Cypress.env('password'));
+    loginPage.getErrorMessage()
+      .should('be.visible')
+      .and('contain', 'Epic sadface: Sorry, this user has been locked out');
+  });
+}); 
