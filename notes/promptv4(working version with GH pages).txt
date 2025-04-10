@@ -6,16 +6,17 @@ Scenario 2: Locked Out User
 4.After both scenarios are executed and validated
 5.Close the browser.
 6. Allow the MCP Server to complete the code generation.
-7.Use the code found in the temp_codegen folder as a reference.
+7. Use the code found in the temp_codegen folder as a reference.
 8.Transpile the test code to a Cypress framework using TypeScript.
-9. Organize the Cypress project without running "cypress open" configure everything by yourself, create the tests(each one should be independent, no dependencies between them),  Use the Page Object Model structure. Store reusable data in the fixtures folder(if they are credentials, put them in the cypress.env.json) like test data or expected results.
+9. Organize the Cypress project without running "cypress open" configure everything by yourself, create the tests(each one should be independent, no dependencies between them),  Use the Page Object Model structure. Store reusable data in the fixtures folder like test data or expected results. if data are credentials, put them in the cypress.env.json
 10. In the root directory  Create a .gitignore file that excludes node_modules and cypress.env.json.
 11. Create a cy task to get detail logs for the actions, and assertions in the terminal, implement it in the framework, just call the cy task to print console logs.
 12. Integrate the Cypress Plugin "cypress-mochawesome-reporter" and its latest version, make all the required configurations. Using the latest version there is only 1 dependency required.
 13. In the root directory Add a README.md file that documents how to run the tests and describes the project structure.
 14. Install dependencies and Run the framework in headless mode by CLI using cypress run. Check that Cypress and all the tests runs without issues. Failures are accepted, framework configuration issues are not.
-15. In the root directory  Set up a GitHub Actions workflow to install dependencies and run the Cypress tests,  The branch name is not main as usualy, it is master.
-16. Then, push the latest changes using the GitHub MCP Server root directory to the remote repository. The repo already exists.
-17. Using the GitHub MCP Server configure the repository to publish a github page based on on the /cypress/reports/html/index.html file.
+15. Check Cypress linting issues and fix them all.
+16. In the root directory  Set up a GitHub Actions workflow to install dependencies and run the Cypress tests,  The branch name is not main as usualy, it is master.
+17. Then, push the latest changes using the GitHub MCP Server root directory to the remote repository. The repo already exists.
+18. Using the GitHub MCP Server configure the repository to publish a github page based on on the /cypress/reports/html/index.html file.
 
-In the chat post: "Run the 17 steps until all the process is completed."
+In the chat post: "Run the 18 steps until all the process is completed."

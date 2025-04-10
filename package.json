@@ -1,17 +1,17 @@
 {
   "name": "playwright-mcp-server",
   "version": "1.0.0",
-  "description": "Automated tests for Sauce Demo using Cypress",
+  "description": "Cypress tests for Sauce Demo website",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run",
-    "test:open": "cypress open"
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JoanEsquivel/playwright-mcp-server.git"
   },
-  "keywords": ["cypress", "typescript", "testing"],
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/JoanEsquivel/playwright-mcp-server#readme",
   "devDependencies": {
-    "cypress": "^13.6.6",
-    "typescript": "^5.4.2",
     "@cypress/xpath": "^2.0.3",
-    "cypress-mochawesome-reporter": "^3.8.2"
+    "cypress": "^13.6.6",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "typescript": "^5.4.2"
   }
 }

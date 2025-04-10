@@ -4,13 +4,13 @@ export class LoginPage {
     password: '[data-test="password"]',
     loginButton: '[data-test="login-button"]',
     errorMessage: '[data-test="error"]'
-  };
+  }
 
   visit() {
-    cy.visit('/');
+    cy.visit('/')
   }
 
   getErrorMessage() {
-    return cy.get(this.selectors.errorMessage);
+    return cy.get(this.selectors.errorMessage)
   }
 } 

@@ -11,9 +11,9 @@ This project contains automated tests for the Sauce Demo website using Cypress w
 │   ├── pages/         # Page objects
 │   └── support/       # Support files and commands
 ├── cypress.config.ts  # Cypress configuration
-├── cypress.env.json   # Environment variables (not in git)
-├── tsconfig.json     # TypeScript configuration
-└── package.json      # Project dependencies
+├── cypress.env.json   # Environment variables (gitignored)
+├── package.json       # Project dependencies
+└── tsconfig.json     # TypeScript configuration
 ```
 
 ## Prerequisites
@@ -41,17 +41,9 @@ This project contains automated tests for the Sauce Demo website using Cypress w
 
 To run tests in headless mode:
 ```bash
-npx cypress run
+npm run cy:run
 ```
 
-The test report will be generated in `cypress/reports/html/index.html`
+## Test Reports
 
-## Features
-
-- TypeScript support
-- Page Object Model pattern
-- Custom commands for common actions
-- Detailed logging using custom Cypress task
-- Mochawesome HTML reporter
-- GitHub Actions integration
-- GitHub Pages for test reports 
+Test reports are generated using cypress-mochawesome-reporter and can be found in the `cypress/reports/html` directory after test execution. 

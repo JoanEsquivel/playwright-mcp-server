@@ -1,6 +1,6 @@
-import './commands';
-import 'cypress-mochawesome-reporter/register';
+import './commands'
+import 'cypress-mochawesome-reporter/register'
 
 beforeEach(() => {
-  cy.task('log', '🚀 Starting test...');
-}); 
+  cy.task('log', '🚀 Starting test...')
+}) 
