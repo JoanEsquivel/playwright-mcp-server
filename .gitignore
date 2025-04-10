@@ -1,22 +1,5 @@
-# Dependency directories
 node_modules/
-
-# TypeScript compiled files
-*.js
-*.map
-
-# Cypress
+cypress.env.json
 cypress/videos/
 cypress/screenshots/
-cypress/downloads/
-cypress.env.json
-
-# OS specific files
-.DS_Store
-Thumbs.db
-
-# Editor directories and files
-.idea/
-.vscode/
-*.swp
-*.swo 
+cypress/reports/ 
