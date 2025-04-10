@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Cypress generated files
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+cypress/reports/
+
+# Environment files with sensitive data
+cypress.env.json
+
+# IDE files
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store 

@@ -1,0 +1,45 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        working-directory: cypress-project
+        run: npm install
+
+      - name: Create env file
+        working-directory: cypress-project
+        run: echo '{"password":"secret_sauce"}' > cypress.env.json
+
+      - name: Run Cypress tests
+        working-directory: cypress-project
+        run: npm run test
+
+      - name: Merge Mochawesome reports
+        if: always()
+        working-directory: cypress-project
+        run: |
+          npx mochawesome-merge cypress/reports/*.json > cypress/reports/mochawesome.json
+          npx mochawesome-report-generator cypress/reports/mochawesome.json -o cypress/reports/html
+
+      - name: Deploy to GitHub Pages
+        if: success() || failure()
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: cypress-project/cypress/reports/html
+          branch: gh-pages 
