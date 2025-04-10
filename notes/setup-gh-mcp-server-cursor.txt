@@ -1,0 +1,13 @@
+1- Navigate to ~/Developer
+2- vim gh-mcp-cursor.sh
+3- insert this command: GITHUB_PERSONAL_ACCESS_TOKEN=your_token_here npx -y @modelcontextprotocol/server-github
+4- save the file
+5- get the path using realpath gh-mcp-cursor.sh
+6- set this MCP server in your cursor: 
+
+"github": {
+      "command": "bash",
+      "args": [
+        "/Users/joanesquivel/Developer/gh-mcp-cursor.sh"
+      ]
+    }
