@@ -1,33 +1,37 @@
-class InventoryPage {
+/// <reference types="cypress" />
+import { BasePage } from './BasePage';
+
+export class InventoryPage extends BasePage {
   // Selectors
-  private menuButton = '#react-burger-menu-btn';
-  private logoutLink = '#logout_sidebar_link';
-  private appLogo = '.app_logo';
-
-  // Methods
-  isLoaded() {
-    cy.get(this.appLogo).should('be.visible');
-    cy.logAssertion('Verified inventory page is loaded');
-    return this;
+  private readonly burgerMenu = '#react-burger-menu-btn';
+  private readonly logoutLink = '#logout_sidebar_link';
+  private readonly pageTitle = '.title';
+  private readonly inventoryItems = '.inventory_item';
+  
+  /**
+   * Verify that user is on the inventory page
+   */
+  verifyInventoryPage(): void {
+    this.logInfo('Verifying user is on inventory page');
+    this.verifyText(this.pageTitle, 'Products');
   }
-
-  clickMenuButton() {
-    cy.get(this.menuButton).click();
-    cy.logAction('Clicked menu button');
-    return this;
+  
+  /**
+   * Logout from the application
+   */
+  logout(): void {
+    this.logInfo('Logging out from the application');
+    this.clickElement(this.burgerMenu);
+    cy.wait(1000); // Wait for menu animation
+    this.clickElement(this.logoutLink);
   }
-
-  clickLogout() {
-    cy.get(this.logoutLink).click();
-    cy.logAction('Clicked logout link');
-    return this;
+  
+  /**
+   * Get the number of inventory items
+   * @returns Cypress.Chainable with the number of items
+   */
+  getInventoryItemCount(): Cypress.Chainable<number> {
+    this.logInfo('Getting inventory item count');
+    return cy.get(this.inventoryItems).its('length');
   }
-
-  logout() {
-    this.clickMenuButton();
-    this.clickLogout();
-    return this;
-  }
-}
-
-export default new InventoryPage(); 
+} 

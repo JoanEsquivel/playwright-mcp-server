@@ -1,0 +1,9 @@
+{
+  "validUser": {
+    "expectedTitle": "Products",
+    "expectedItems": 6
+  },
+  "lockedUser": {
+    "errorMessage": "Sorry, this user has been locked out."
+  }
+} 

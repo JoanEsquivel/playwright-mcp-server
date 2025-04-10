@@ -1,10 +1,10 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 
-// Import cypress-mochawesome-reporter
+// Import cypress-mochawesome-reporter for screenshots on failure
 import 'cypress-mochawesome-reporter/register';
 
-// Hide fetch/XHR requests in the command log
+// Hide fetch/XHR requests in command log
 const app = window.top;
 if (app && !app.document.head.querySelector('[data-hide-command-log-request]')) {
   const style = app.document.createElement('style');
@@ -13,7 +13,15 @@ if (app && !app.document.head.querySelector('[data-hide-command-log-request]')) 
   app.document.head.appendChild(style);
 }
 
-Cypress.on('uncaught:exception', (err) => {
-  // returning false here prevents Cypress from failing the test
-  return false;
-}); 
+// Prevent TypeScript errors by declaring custom commands
+declare global {
+  namespace Cypress {
+    interface Chainable<Subject = any> {
+      /**
+       * Custom command to login with specific user type
+       * @example cy.loginAs('standard')
+       */
+      loginAs(userType: string): Chainable<void>;
+    }
+  }
+} 

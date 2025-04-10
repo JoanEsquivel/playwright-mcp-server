@@ -1,66 +1,102 @@
-# SauceDemo Cypress Test Automation
+# SauceDemo Cypress Tests
 
-This project contains automated tests for the SauceDemo website using Cypress with TypeScript.
+This project contains automated tests for the [SauceDemo](https://www.saucedemo.com) website using Cypress with TypeScript.
 
-## Project Structure
+## Features
 
-```
-├── cypress/
-│   ├── e2e/               # Test files
-│   ├── fixtures/          # Test data
-│   ├── pages/             # Page objects
-│   ├── support/           # Support files (commands, etc.)
-│   └── reports/           # Test reports (generated)
-├── .gitignore             # Git ignore file
-├── cypress.config.ts      # Cypress configuration
-├── cypress.env.json       # Environment variables (not committed)
-├── package.json           # Project dependencies
-├── README.md              # Project documentation
-└── tsconfig.json          # TypeScript configuration
-```
+- Written in TypeScript
+- Page Object Model pattern
+- Custom commands
+- Environment configuration
+- Detailed logging
+- Mochawesome reporting
+- GitHub Actions integration
+- GitHub Pages for test reports
 
-## Test Scenarios
+## Prerequisites
 
-1. **Valid Login Test** - Tests successful login with standard user
-2. **Locked Out User Test** - Tests error message for locked out user
+- Node.js (v16 or higher)
+- npm (v8 or higher)
 
-## Setup
-
-1. Clone the repository
-2. Install dependencies:
+## Installation
 
 ```bash
+# Clone the repository
+git clone <repository-url>
+
+# Navigate to the project directory
+cd cypress-saucedemo
+
+# Install dependencies
 npm install
-```
-
-3. Create a `cypress.env.json` file with the following content:
-
-```json
-{
-  "standardUsername": "standard_user",
-  "lockedOutUsername": "locked_out_user",
-  "password": "secret_sauce"
-}
 ```
 
 ## Running Tests
 
-### Headless Mode
-
-To run all tests in headless mode:
-
 ```bash
-npm test
-```
+# Run tests in headless mode
+npm run cy:run
 
-### Interactive Mode
-
-To open Cypress in interactive mode:
-
-```bash
+# Open Cypress Test Runner
 npm run cy:open
+
+# Run linting
+npm run lint
 ```
 
-## Reports
+## Project Structure
 
-Test reports are generated using cypress-mochawesome-reporter and can be found in the `cypress/reports/html` directory after running the tests. 
+```
+cypress-saucedemo/
+├── .github/                    # GitHub Actions workflows
+│   └── workflows/
+│       └── cypress.yml         # CI workflow configuration
+├── cypress/
+│   ├── e2e/                    # Test files
+│   │   └── login.cy.ts         # Login tests
+│   ├── fixtures/               # Test data
+│   │   └── testData.json       # Common test data
+│   ├── pages/                  # Page Object Models
+│   │   ├── BasePage.ts         # Base page with common methods
+│   │   ├── LoginPage.ts        # Login page object
+│   │   └── InventoryPage.ts    # Inventory page object
+│   ├── reports/                # Generated test reports (git ignored)
+│   └── support/                # Support files
+│       ├── commands.ts         # Custom commands
+│       └── e2e.ts              # e2e support file
+├── cypress.config.ts           # Cypress configuration
+├── cypress.env.json            # Environment variables (git ignored)
+├── package.json                # Dependencies and scripts
+├── tsconfig.json               # TypeScript configuration
+└── README.md                   # Project documentation
+```
+
+## Test Reports
+
+After running the tests, reports are generated in the `cypress/reports` directory. When tests are run in the CI pipeline, the reports are published to GitHub Pages.
+
+## Environment Variables
+
+Sensitive data like credentials are stored in `cypress.env.json` which is git-ignored for security. Create this file locally with the following structure:
+
+```json
+{
+  "users": {
+    "standard": "standard_user",
+    "locked": "locked_out_user",
+    "problem": "problem_user",
+    "performance": "performance_glitch_user"
+  },
+  "password": "secret_sauce"
+}
+```
+
+## CI/CD
+
+The project uses GitHub Actions for continuous integration. On each push to the `master` branch, the workflow:
+
+1. Installs dependencies
+2. Runs Cypress tests
+3. Uploads screenshots on failure
+4. Generates and publishes test reports
+5. Deploys the report to GitHub Pages 

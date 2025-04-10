@@ -1,51 +1,48 @@
-class LoginPage {
+/// <reference types="cypress" />
+import { BasePage } from './BasePage';
+
+export class LoginPage extends BasePage {
   // Selectors
-  private usernameInput = '#user-name';
-  private passwordInput = '#password';
-  private loginButton = '#login-button';
-  private errorMessage = '.error-message-container';
+  private readonly usernameInput = '#user-name';
+  private readonly passwordInput = '#password';
+  private readonly loginButton = '#login-button';
+  private readonly errorMessage = '[data-test="error"]';
 
-  // Methods
-  visit() {
+  /**
+   * Navigate to the login page
+   */
+  visit(): void {
+    this.logInfo('Navigating to login page');
     cy.visit('/');
-    cy.logAction('Visited login page');
-    return this;
   }
 
-  typeUsername(username: string) {
-    cy.get(this.usernameInput).type(username);
-    cy.logAction(`Typed username: ${username}`);
-    return this;
+  /**
+   * Login with username and password
+   * @param username - The username to use
+   * @param password - The password to use
+   */
+  login(username: string, password: string): void {
+    this.logInfo(`Logging in with username: ${username}`);
+    this.typeText(this.usernameInput, username);
+    this.typeText(this.passwordInput, password);
+    this.clickElement(this.loginButton);
   }
 
-  typePassword(password: string) {
-    cy.get(this.passwordInput).type(password);
-    cy.logAction('Typed password');
-    return this;
-  }
-
-  clickLogin() {
-    cy.get(this.loginButton).click();
-    cy.logAction('Clicked login button');
-    return this;
-  }
-
-  login(username: string, password: string) {
-    this.typeUsername(username);
-    this.typePassword(password);
-    this.clickLogin();
-    return this;
-  }
-
-  getErrorMessage() {
+  /**
+   * Get the error message text
+   * @returns Cypress.Chainable with the error message element
+   */
+  getErrorMessage(): Cypress.Chainable<JQuery<HTMLElement>> {
+    this.logInfo('Getting error message');
     return cy.get(this.errorMessage);
   }
 
-  verifyErrorMessage(expectedMessage: string) {
-    this.getErrorMessage().should('contain.text', expectedMessage);
-    cy.logAssertion(`Verified error message contains: ${expectedMessage}`);
-    return this;
+  /**
+   * Verify error message contains specific text
+   * @param text - The expected error text
+   */
+  verifyErrorMessage(text: string): void {
+    this.logInfo(`Verifying error message contains: ${text}`);
+    this.getErrorMessage().should('contain', text);
   }
-}
-
-export default new LoginPage(); 
+} 
