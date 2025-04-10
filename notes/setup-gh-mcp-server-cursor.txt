@@ -11,3 +11,5 @@
         "/Users/joanesquivel/Developer/gh-mcp-cursor.sh"
       ]
     }
+
+Github MCP Server documentation
