@@ -21,6 +21,7 @@
 19. Check Cypress linting issues and fix them all.
 20. In the root directory  Set up a GitHub Actions workflow to install dependencies and run the Cypress tests,  The branch name is not main as usualy, it is master.
 21. Then, commit, and push the latest changes using the GitHub MCP Server root directory to the remote repository. The repo already exists, and I need to version the changes.
-22. Using the GitHub MCP Server configure the repository to publish a github page based on on the /cypress/reports/html/index.html file. I need to have the latest report view
-23. Confirm the GH Action file is using the latest actions, and everything is well configured. If it needs a change, push it to the remote repository.
-In the chat post: "Run the 23 steps sequentially until all the process is completed, make sure to analyze each detail of the prompt to accomplish everything."
+22. Using the GitHub MCP Server configure the repository to publish a github page based on on the /cypress/reports/html/index.html file. I need to have the latest report view, if needed make modifications to the cypress.yml file
+
+
+In the chat post: "Run the 22 steps sequentially until all the process is completed, make sure to analyze each detail of the prompt to accomplish everything. Use latest dependency versions to avoid issues."

@@ -11,5 +11,5 @@
       "@fixtures/*": ["cypress/fixtures/*"]
     }
   },
-  "include": ["**/*.ts", "node_modules/cypress/types/*.ts"]
+  "include": ["**/*.ts"]
 } 

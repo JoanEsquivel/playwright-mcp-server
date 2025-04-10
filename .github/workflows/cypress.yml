@@ -17,66 +17,33 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-      
+          
       - name: Install dependencies
-        run: npm ci
+        run: npm install
+        
+      - name: Create cypress.env.json
+        run: |
+          echo '{
+            "username": "standard_user",
+            "password": "secret_sauce"
+          }' > cypress.env.json
       
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build
           browser: chrome
-          headed: false
-        env:
-          # pass GitHub token to enable accurate reporting of test status
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Upload screenshots if test fails
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      
-      - name: Upload Mochawesome reports
-        uses: actions/upload-artifact@v3
+          
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cypress-reports
-          path: cypress/reports
-
-  deploy-report:
-    needs: cypress-run
-    runs-on: ubuntu-latest
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-      contents: read    # to read the repository contents
-    
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Download reports artifact
-        uses: actions/download-artifact@v3
+          name: cypress-report
+          path: cypress/reports/html
+          if-no-files-found: warn
+          
+      - name: Deploy report to GitHub Pages
+        if: success() && github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: cypress-reports
-          path: cypress/reports
-      
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: './cypress/reports/html'
-      
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./cypress/reports/html 

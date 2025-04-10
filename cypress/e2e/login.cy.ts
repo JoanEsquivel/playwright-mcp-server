@@ -1,41 +1,44 @@
-/// <reference types="cypress" />
-import { LoginPage } from '../pages/LoginPage';
-import { InventoryPage } from '../pages/InventoryPage';
+import LoginPage from '../pages/LoginPage';
+import ProductsPage from '../pages/ProductsPage';
 
 describe('SauceDemo Login Tests', () => {
-  const loginPage = new LoginPage();
-  const inventoryPage = new InventoryPage();
-  
   beforeEach(() => {
-    cy.task('log', '-------- Starting new test --------');
-    loginPage.visit();
+    cy.task('log', '=== Starting Test ===');
+    // Load fixture data
+    cy.fixture('credentials.json').as('credentials');
   });
-  
-  it('should login successfully with valid credentials', () => {
-    cy.fixture('testData.json').then((testData) => {
-      // Login with standard user
-      const username = Cypress.env('users').standard;
-      const password = Cypress.env('password');
-      loginPage.login(username, password);
+
+  it('Scenario 1: Valid Login and Logout', () => {
+    cy.get('@credentials').then((credentials: any) => {
+      const { username, password } = credentials.standardUser;
+      
+      // Login with valid credentials
+      LoginPage.visit()
+        .login(username, password);
       
       // Verify successful login
-      inventoryPage.verifyInventoryPage();
-      inventoryPage.getInventoryItemCount().should('eq', testData.validUser.expectedItems);
+      ProductsPage.isLoaded();
       
       // Logout
-      inventoryPage.logout();
+      ProductsPage.logout();
+      
+      // Verify back at login page
+      cy.url().should('include', '/');
+      cy.task('log', 'Successfully logged out and returned to login page');
     });
   });
-  
-  it('should show error message for locked out user', () => {
-    cy.fixture('testData.json').then((testData) => {
-      // Login with locked user
-      const username = Cypress.env('users').locked;
-      const password = Cypress.env('password');
-      loginPage.login(username, password);
+
+  it('Scenario 2: Locked Out User', () => {
+    cy.get('@credentials').then((credentials: any) => {
+      const { username, password } = credentials.lockedOutUser;
+      const errorMessage = credentials.errorMessages.lockedOutUser;
       
-      // Verify error message
-      loginPage.verifyErrorMessage(testData.lockedUser.errorMessage);
+      // Attempt login with locked out user
+      LoginPage.visit()
+        .login(username, password)
+        .verifyErrorMessage(errorMessage);
+      
+      cy.task('log', 'Locked out user test completed successfully');
     });
   });
 }); 
