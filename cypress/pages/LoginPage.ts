@@ -5,7 +5,7 @@ class LoginPage {
   private loginButton = '#login-button';
   private errorMessage = '[data-test="error"]';
 
-  // Methods
+  // Actions
   visit() {
     cy.visit('/');
     cy.task('log', 'Navigated to login page');
@@ -21,18 +21,15 @@ class LoginPage {
     
     cy.get(this.loginButton).click();
     cy.task('log', 'Clicked login button');
-    
     return this;
   }
 
-  getErrorMessage() {
-    cy.task('log', 'Getting error message');
-    return cy.get(this.errorMessage);
-  }
-
-  verifyErrorMessage(expectedMessage: string) {
-    this.getErrorMessage().should('contain.text', expectedMessage);
-    cy.task('log', `Verified error message: "${expectedMessage}"`);
+  // Assertions
+  verifyErrorMessage(expectedErrorMessage: string) {
+    cy.get(this.errorMessage)
+      .should('be.visible')
+      .and('contain.text', expectedErrorMessage);
+    cy.task('log', `Verified error message: ${expectedErrorMessage}`);
     return this;
   }
 }

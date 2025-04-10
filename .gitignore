@@ -1,6 +1,24 @@
+# Dependencies
 node_modules/
-cypress.env.json
+
+# Cypress generated files
 cypress/videos/
 cypress/screenshots/
-dist/
-.DS_Store 
+cypress/downloads/
+
+# Environment variables with sensitive data
+cypress.env.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo 

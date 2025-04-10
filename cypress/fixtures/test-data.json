@@ -1,0 +1,10 @@
+{
+  "validLogin": {
+    "title": "Swag Labs",
+    "productsHeader": "Products",
+    "inventoryPageUrl": "/inventory.html"
+  },
+  "lockedOutUser": {
+    "errorMessage": "Epic sadface: Sorry, this user has been locked out."
+  }
+} 
