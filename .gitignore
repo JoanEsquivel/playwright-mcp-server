@@ -1,5 +1,34 @@
+# Dependencies
 node_modules/
-cypress.env.json
+
+# Cypress
 cypress/videos/
 cypress/screenshots/
-cypress/reports/ 
+cypress.env.json
+
+# Reports
+cypress/reports/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride 

@@ -11,42 +11,53 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: '20.x'
+          node-version: 18
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
       - name: Create env file
         run: |
           echo '{
-            "standardUser": "standard_user",
-            "lockedOutUser": "locked_out_user",
+            "standardUsername": "standard_user",
+            "lockedOutUsername": "locked_out_user",
             "password": "secret_sauce"
           }' > cypress.env.json
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v5
         with:
           browser: chrome
-          headless: true
+          headed: false
 
-      - name: Upload test results
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
         if: always()
-        uses: actions/upload-artifact@v4
         with:
-          name: cypress-reports
-          path: cypress/reports
+          name: cypress-report
+          path: cypress/reports/html
           retention-days: 30
-
-      - name: Deploy to GitHub Pages
-        if: success()
-        uses: peaceiris/actions-gh-pages@v3
+          
+  deploy-report:
+    needs: cypress-run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Download Cypress Reports
+        uses: actions/download-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./cypress/reports/html
-          enable_jekyll: true 
+          name: cypress-report
+          path: cypress/reports/html
+          
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: cypress/reports/html
+          branch: gh-pages 

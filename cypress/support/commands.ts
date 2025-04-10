@@ -1,23 +1,39 @@
+// ***********************************************
+// This example commands.ts shows you how to
+// create various custom commands and overwrite
+// existing commands.
+//
+// For more comprehensive examples of custom
+// commands please read more here:
+// https://on.cypress.io/custom-commands
+// ***********************************************
+
 /// <reference types="cypress" />
 
-Cypress.Commands.add('login', (username: string, password: string) => {
-  cy.task('log', `👤 Logging in with username: ${username}`)
-  cy.get('[data-test="username"]').type(username)
-  cy.get('[data-test="password"]').type(password)
-  cy.get('[data-test="login-button"]').click()
-})
+// Custom command to log actions
+Cypress.Commands.add('logAction', (message: string) => {
+  cy.task('log', `ACTION: ${message}`);
+});
 
-Cypress.Commands.add('logout', () => {
-  cy.task('log', '👋 Logging out')
-  cy.get('#react-burger-menu-btn').click()
-  cy.get('#logout_sidebar_link').click()
-})
+// Custom command to log assertions
+Cypress.Commands.add('logAssertion', (message: string) => {
+  cy.task('log', `ASSERTION: ${message}`);
+});
+
+// Custom command for login
+Cypress.Commands.add('login', (username: string, password: string) => {
+  cy.get('#user-name').type(username);
+  cy.get('#password').type(password);
+  cy.get('#login-button').click();
+  cy.logAction(`Logged in with username: ${username}`);
+});
 
 declare global {
   namespace Cypress {
     interface Chainable {
-      login(username: string, password: string): Chainable<void>
-      logout(): Chainable<void>
+      logAction(message: string): Chainable<void>;
+      logAssertion(message: string): Chainable<void>;
+      login(username: string, password: string): Chainable<void>;
     }
   }
 } 
