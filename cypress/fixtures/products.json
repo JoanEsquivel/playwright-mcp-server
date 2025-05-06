@@ -1,0 +1,10 @@
+{
+  "successProduct": {
+    "name": "Fjallraven - Foldsack No. 1 Backpack",
+    "price": "$109.95"
+  },
+  "failureProduct": {
+    "name": "White Gold Plated Princess",
+    "price": "$9.99"
+  }
+} 

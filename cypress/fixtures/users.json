@@ -1,0 +1,16 @@
+{
+  "successUser": {
+    "username": "test_user",
+    "password": "test_pass",
+    "fullName": "Test User",
+    "email": "test@example.com",
+    "address": "123 Test Street, Test City, 12345"
+  },
+  "failureUser": {
+    "username": "test_failure",
+    "password": "test_pass",
+    "fullName": "Test Failure",
+    "email": "failure@example.com",
+    "address": "123 Failure Street, Failure City, 54321"
+  }
+} 

@@ -1,0 +1,35 @@
+{
+  "name": "playwright-mcp-server",
+  "version": "1.0.0",
+  "description": "E-commerce test automation with Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "test:headless": "cypress run --headless",
+    "test:success": "cypress run --spec cypress/e2e/successful-order-flow.cy.ts",
+    "test:failure": "cypress run --spec cypress/e2e/failed-order-flow.cy.ts",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoanEsquivel/playwright-mcp-server.git"
+  },
+  "keywords": [
+    "cypress",
+    "typescript",
+    "e2e",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoanEsquivel/playwright-mcp-server/issues"
+  },
+  "homepage": "https://github.com/JoanEsquivel/playwright-mcp-server#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.25",
+    "cypress": "^14.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  }
+}

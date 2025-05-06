@@ -16,7 +16,7 @@ You are a senior automation agent using the Playwright MCP Server to control a r
 - [ ] As you interact with the browser using the MCP Server, you must record **every action and selector in real time**.
 - [ ] Do NOT wait until the end to generate code.
 - [ ] Immediately translate each interaction into Cypress-compatible code and **append it to**:
-  - `/temp/cypress-test.cy.ts`
+  - `/scripts/cypress-test.cy.ts`
 
 ✅ TEST CASE 1: SUCCESSFUL ORDER FLOW
 
@@ -24,6 +24,7 @@ You are a senior automation agent using the Playwright MCP Server to control a r
   - Username: test_user
   - Password: test_pass
 - [ ] Complete a purchase with a mock credit card.
+- [ ] Logout to avoid unexpected auth issues
 - [ ] Record and store all actions and assertions.
 
 ❌ TEST CASE 2: FAILED ORDER FLOW
@@ -35,7 +36,7 @@ You are a senior automation agent using the Playwright MCP Server to control a r
 - [ ] Record and store the corresponding actions and error handling.
 
 🚫 DO NOT PROCEED TO PHASE 2 UNTIL THE FOLLOWING CONDITIONS ARE TRUE:
-- [ ] `/temp/cypress-test.cy.ts` exists.
+- [ ] `/scripts/cypress-test.cy.ts` exists.
 - [ ] It includes full interaction code for both test cases.
 - [ ] Cypress code includes selectors, inputs, assertions, and flows.
 
@@ -46,6 +47,13 @@ If these conditions are not satisfied, STOP. Prompt the user for confirmation or
 📍 PHASE 2 – CYPRESS FRAMEWORK BOOTSTRAP (WITH TYPESCRIPT)
 
 - [ ] Initialize a Cypress project using TypeScript.
+
+- [ ] Install all necessary dependencies:
+```
+npm init -y
+npm install cypress typescript ts-node @types/node --save-dev
+npx cypress install
+```
 
 - [ ] Refactor the recorded test using the Page Object Model (POM):
   - [ ] One page object per page (Login, Products, Cart, Checkout).
@@ -86,4 +94,5 @@ cypress/
 npx cypress run --headless
 ```
 
+✅ Confirm that tests run successfully and assert expected outcomes.
 Only begin this phase if PHASE 1 completed successfully. Follow instructions exactly and confirm each output.
