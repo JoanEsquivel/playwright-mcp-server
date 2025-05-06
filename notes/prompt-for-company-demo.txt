@@ -1,58 +1,63 @@
-🧠 CURSOR AGENT - GOLD STANDARD PROMPT FOR E2E TEST GENERATION USING PLAYWRIGHT MCP AND CYPRESS
+🧠 CURSOR / CLAUDE AGENT - STRICT PROMPT FOR E2E TEST GENERATION USING PLAYWRIGHT MCP AND CYPRESS
 
-You are a senior automation engineer using the Playwright MCP Server to control a real browser and interact with a mock e-commerce application. Follow these instructions step-by-step. Do not skip or assume anything. Use bullet points and complete each task fully before moving on.
+You are a senior automation agent using the Playwright MCP Server to control a real browser and interact with a mock e-commerce application. Follow these instructions EXACTLY and SEQUENTIALLY. This process is composed of **two strict phases**, and you are NOT ALLOWED to proceed to Phase 2 until all conditions from Phase 1 are confirmed as completed.
 
 ---
+
+📍 PHASE 1 – RECORD E2E TEST FLOWS USING MCP SERVER
 
 🔗 TARGET WEBSITE
 
-- [ ] Navigate to the following page using the Playwright MCP Server:
-  https://v0-imagine-deals.vercel.app/login
+- [ ] Connect to the MCP Server.
+- [ ] Navigate to: https://v0-imagine-deals.vercel.app/login
 
----
+📝 PARALLEL RECORDING REQUIREMENT
 
-✅ TEST CASE 1: SUCCESSFUL PAYMENT FLOW
+- [ ] As you interact with the browser using the MCP Server, you must record **every action and selector in real time**.
+- [ ] Do NOT wait until the end to generate code.
+- [ ] Immediately translate each interaction into Cypress-compatible code and **append it to**:
+  - `/temp/cypress-test.cy.ts`
 
-- [ ] Login using the following credentials:
+✅ TEST CASE 1: SUCCESSFUL ORDER FLOW
+
+- [ ] Login using:
   - Username: test_user
   - Password: test_pass
-- [ ] Complete a full purchase flow using a mock credit card.
-- [ ] Ensure the payment is accepted and the order completes successfully.
+- [ ] Complete a purchase with a mock credit card.
+- [ ] Record and store all actions and assertions.
 
-❌ TEST CASE 2: FAILED PAYMENT FLOW
+❌ TEST CASE 2: FAILED ORDER FLOW
 
-- [ ] Login using the following credentials:
+- [ ] Login using:
   - Username: test_failure
   - Password: test_pass
-- [ ] Follow the same flow as above, but simulate a failed payment (e.g. card declined).
-- [ ] Confirm the proper error handling is shown for a failed transaction.
+- [ ] Attempt to complete the same flow, but simulate a declined payment.
+- [ ] Record and store the corresponding actions and error handling.
+
+🚫 DO NOT PROCEED TO PHASE 2 UNTIL THE FOLLOWING CONDITIONS ARE TRUE:
+- [ ] `/temp/cypress-test.cy.ts` exists.
+- [ ] It includes full interaction code for both test cases.
+- [ ] Cypress code includes selectors, inputs, assertions, and flows.
+
+If these conditions are not satisfied, STOP. Prompt the user for confirmation or retry.
 
 ---
 
-🎥 ACTION RECORDING
+📍 PHASE 2 – CYPRESS FRAMEWORK BOOTSTRAP (WITH TYPESCRIPT)
 
-- [ ] Use the MCP Server to record all selectors and user interactions for both test cases.
-- [ ] Generate a Cypress test file based on the recorded flow and save it as:
-  /temp/cypress-test.cy.ts
+- [ ] Initialize a Cypress project using TypeScript.
 
----
+- [ ] Refactor the recorded test using the Page Object Model (POM):
+  - [ ] One page object per page (Login, Products, Cart, Checkout).
+  - [ ] Store these in the `pages/` folder.
 
-🛠️ CYPRESS FRAMEWORK SETUP (WITH TYPESCRIPT)
+- [ ] Store test data in the `fixtures/` folder.
 
-- [ ] Initialize a new Cypress project using TypeScript.
+- [ ] Store credentials using environment variables:
+  - `CYPRESS_USERNAME`, `CYPRESS_PASSWORD`
+  - NEVER hardcode credentials.
 
-- [ ] Refactor the recorded test to use the Page Object Model (POM) pattern:
-  - [ ] Create one page object per page (Login, Products, Cart, Checkout).
-  - [ ] Store these files inside a `pages/` folder.
-
-- [ ] Use fixtures to store test data:
-  - [ ] Store this data in the `fixtures/` folder.
-
-- [ ] Secure credentials and sensitive information:
-  - [ ] Store credentials using environment variables (e.g. `CYPRESS_USERNAME`, `CYPRESS_PASSWORD`).
-  - [ ] Do not hardcode passwords or usernames in test files.
-
-- [ ] Add a `.gitignore` file to exclude unnecessary files:
+- [ ] Add a `.gitignore` with the following:
   ```
   node_modules/
   .env
@@ -60,18 +65,14 @@ You are a senior automation engineer using the Playwright MCP Server to control 
   cypress/screenshots/
   ```
 
-- [ ] Create a `README.md` file with the following sections:
-  - [ ] Project overview and purpose
-  - [ ] Setup instructions
-  - [ ] How to run tests (`npx cypress run --headless`)
-  - [ ] Folder structure overview
-  - [ ] Required environment variables and where to define them
+- [ ] Create a `README.md` with:
+  - Project overview
+  - Setup steps
+  - How to run: `npx cypress run --headless`
+  - Folder structure
+  - Env variable configuration
 
----
-
-📁 EXPECTED PROJECT STRUCTURE
-
-- [ ] Create the following folder layout(if you need extra folders, add them):
+📁 Project Structure:
 ```
 cypress/
   ├── fixtures/
@@ -80,13 +81,9 @@ cypress/
   └── e2e/
 ```
 
----
-
-🧪 FINAL STEP: HEADLESS EXECUTION
-
-- [ ] Run both test cases using Cypress in headless mode to verify success:
+🧪 Run all tests in headless mode:
 ```
 npx cypress run --headless
 ```
 
-Repeat: Do not assume or skip any step. Follow the checklist and complete all outputs as described.
+Only begin this phase if PHASE 1 completed successfully. Follow instructions exactly and confirm each output.
